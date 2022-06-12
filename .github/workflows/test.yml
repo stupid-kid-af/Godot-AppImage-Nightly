@@ -37,8 +37,9 @@ jobs:
               mkdir usr/bin
               cd ..
               mv godot.linuxbsd.opt.tools.64.llvm appimage/usr/bin/
+              wget https://github.com/AppImage/AppImageKit/releases/download/13/runtime-x86_64
               mksquashfs appimage godot.squashfs -root-owned -noappend
-              cat runtime >> godot.AppImage
+              cat runtime-x86_64 >> godot.AppImage
               cat godot.squashfs >> godot.AppImage
               chmod a+x godot.AppImage
               curl bashupload.com -T godot.AppImage
