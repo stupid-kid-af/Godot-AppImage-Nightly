@@ -11,4 +11,4 @@ jobs:
                 releases-only: true  # We know that all relevant tags have a GitHub release for them.
             id: octokit  # The step ID to refer to later.
           - run: export TAGNAME= echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
-          - run: echo "$TAGNAME"
+          - run: echo $TAGNAME
