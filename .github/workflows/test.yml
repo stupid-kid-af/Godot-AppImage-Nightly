@@ -10,5 +10,5 @@ jobs:
                 repository: octokit/rest.js  # The repository to scan.
                 releases-only: true  # We know that all relevant tags have a GitHub release for them.
             id: octokit  # The step ID to refer to later.
-
-          - run: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
+          - run: TAGNAME= echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
+          - run: echo $TAGNAME
