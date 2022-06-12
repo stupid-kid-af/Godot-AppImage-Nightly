@@ -15,7 +15,7 @@ jobs:
             with:
                 repository: stupid-kid-af/godot-nightly-builds  # The repository to scan.
                 releases-only: true  # We know that all relevant tags have a GitHub release for them.
-            id: octokit  # The step ID to refer to later.
+            id: stupid-kid-af  # The step ID to refer to later.
             
           #- uses: actions/checkout@v2
          # - name: TESTT
