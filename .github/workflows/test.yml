@@ -13,5 +13,5 @@ jobs:
             env:
               TAGNAME: echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
 
-          - run: curl -fsSL github.com/stupid-kid-af/godot-nighly-builds/releases/latest/download/godot_binaries-${{TAGNAME}}.zip -O
+          - run: curl -fsSL github.com/stupid-kid-af/godot-nighly-builds/releases/latest/download/godot_binaries-$TAGNAME.zip -O
 
