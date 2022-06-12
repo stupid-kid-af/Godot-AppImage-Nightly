@@ -25,5 +25,9 @@ jobs:
           - name: Set env
             run: echo TAGNAME=$(echo ${{ steps.octokit.outputs.tag }}) >> $GITHUB_ENV
           - run: wget  github.com/stupid-kid-af/godot-nighly-builds/releases/download/${TAGNAME}/godot_binaries-times${TAGNAME}.zip 
+          - run: unzip godot_binaries-times${TAGNAME}.zip
+          - run: wget https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage
+          - run: chmod +x appimagetool-x86_64.AppImage
+      
 
 
