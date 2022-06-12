@@ -17,10 +17,10 @@ jobs:
                 releases-only: true  # We know that all relevant tags have a GitHub release for them.
             id: octokit  # The step ID to refer to later.
             
-          - uses: actions/checkout@v2
-          - name: TESTT
-          - run:  echo "TAGNAME=$(echo ${{ steps.octokit.outputs.tag }} | cut -c 1-6)" >> $GITHUB_ENV
-          - name: WGET
+          #- uses: actions/checkout@v2
+         # - name: TESTT
+        #  - run:  echo "TAGNAME=$(echo ${{ steps.octokit.outputs.tag }} | cut -c 1-6)" >> $GITHUB_ENV
+       #   - name: WGET
           - run: wget  github.com/stupid-kid-af/godot-nighly-builds/releases/download/${TAGNAME}/godot_binaries-times${TAGNAME}.zip 
 
 
