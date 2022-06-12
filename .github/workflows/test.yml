@@ -21,6 +21,9 @@ jobs:
          # - name: TESTT
         #  - run:  echo "TAGNAME=$(echo ${{ steps.octokit.outputs.tag }} | cut -c 1-6)" >> $GITHUB_ENV
        #   - name: WGET
+          - uses: actions/checkout@v2
+          - name: Set env
+            run: echo "TON=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
           - run: wget  github.com/stupid-kid-af/godot-nighly-builds/releases/download/${TAGNAME}/godot_binaries-times${TAGNAME}.zip 
 
 
