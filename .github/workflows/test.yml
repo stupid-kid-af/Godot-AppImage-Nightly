@@ -12,7 +12,7 @@ jobs:
             id: octokit  # The step ID to refer to later.
           - run: |
               TAGNAME= echo "Octokit is at version ${{ steps.octokit.outputs.tag }}"
-              export TAGNAME
+              export $TAGNAME
 
               wget  github.com/stupid-kid-af/godot-nighly-builds/releases/download/${TAGNAME}/godot_binaries-times${TAGNAME}.zip 
 
