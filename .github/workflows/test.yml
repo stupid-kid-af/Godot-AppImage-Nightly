@@ -41,11 +41,14 @@ jobs:
               mv  appimage AppImageKit/ci/
               cd AppImageKit/
               ARCH=x86_64 bash ci/build.sh  appimage
-              wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
-              chmod +x appimagetool-x86_64.AppImage
-              ARCH=x86_64 ./appimagetool-x86_64.AppImage appimage
-              chmod a+x godot.AppImage
-              curl bashupload.com -T godot.AppImage
+              ARCH=x86_64 bash ci/build-appdir.sh appimage
+              curl bashupload.com -T Godot-x86_64.AppImage
+
+          #wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
+         # chmod +x appimagetool-x86_64.AppImage
+         # ARCH=x86_64 ./appimagetool-x86_64.AppImage appimage
+         # chmod a+x godot.AppImage
+              
 
           
       
