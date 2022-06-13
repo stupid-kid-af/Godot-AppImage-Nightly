@@ -41,10 +41,9 @@ jobs:
               mv  appimage AppImageKit/ci/
               cd AppImageKit/
               ARCH=x86_64 bash ci/build.sh  appimage
-              wget https://github.com/AppImage/AppImageKit/releases/download/13/runtime-x86_64
-              mksquashfs appimage godot.squashfs -root-owned -noappend
-              cat runtime-x86_64 >> godot.AppImage
-              cat godot.squashfs >> godot.AppImage
+              wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
+              chmod +x appimagetool-x86_64.AppImage
+              ARCH=x86_64 ./appimagetool-x86_64.AppImage appimage
               chmod a+x godot.AppImage
               curl bashupload.com -T godot.AppImage
 
