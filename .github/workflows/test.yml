@@ -37,6 +37,9 @@ jobs:
               mkdir usr/bin
               cd ..
               mv godot.linuxbsd.opt.tools.64.llvm appimage/usr/bin/
+              git clone --single-branch --recursive https://github.com/AppImage/AppImageKit
+              cd AppImageKit/
+              bash ci/build.sh
               wget https://github.com/AppImage/AppImageKit/releases/download/13/runtime-x86_64
               mksquashfs appimage godot.squashfs -root-owned -noappend
               cat runtime-x86_64 >> godot.AppImage
