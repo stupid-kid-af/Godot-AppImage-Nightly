@@ -1,10 +1,17 @@
-name: linux
-on: push
+name: Release
+on:
+  schedule:
+    - cron: "5 */12 * * *"
+  push:
+    branches:
+      - "master"
+  workflow_dispatch:
 
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+    
           - uses: actions/checkout@v2
           - name: Set env
             run: echo "TON=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
@@ -41,7 +48,36 @@ jobs:
               chmod +x appimagetool-x86_64.AppImage
               ARCH=x86_64 ./appimagetool-x86_64.AppImage appimage
               curl bashupload.com -T Godot-x86_64.AppImage
+          - name: Create GitHub release
+            id: create-new-release
+            uses: actions/create-release@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.TOKEN }}
+            with:
+              tag_name: ${{ github.run_number }}
+              release_name: Release ${{ github.run_number }}
+          - name: DIr
+            run: cd godot && ls -la
+          - name: Upload release asset
 
+            uses: actions/upload-release-asset@v1
+            env:
+                GITHUB_TOKEN: ${{ secrets.TOKEN }}
+            with:
+                upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+                asset_path: bin/Godot-x86_64.AppImage
+                asset_name: Godot-x86_64-nightly${{ github.run_number }}.AppImage
+                asset_content_type: application/AppImage   
+          - name: Upload release asset
+
+            uses: actions/upload-release-asset@v1
+            env:
+                GITHUB_TOKEN: ${{ secrets.TOKEN }}
+            with:
+                upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+                asset_path: godot_binaries-times${TAGNAME}.zip
+                asset_name: godot_binaries-${TAGNAME}.zip
+                asset_content_type: application/zip
           #wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
          # chmod +x appimagetool-x86_64.AppImage
          # ARCH=x86_64 ./appimagetool-x86_64.AppImage appimage
