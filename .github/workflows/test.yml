@@ -33,6 +33,7 @@ jobs:
           - run: |
               wget  github.com/stupid-kid-af/godot-nighly-builds/releases/download/${TAGNAME}/godot_binaries-times${TAGNAME}.zip 
               unzip godot_binaries-times${TAGNAME}.zip
+              mv godot_binaries-times${TAGNAME}.zip godot_binaries.zip
               cd bin
               sudo apt-get install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
               wget https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage
@@ -74,8 +75,8 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.TOKEN }}
             with:
                 upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-                asset_path: godot_binaries-times${TAGNAME}.zip
-                asset_name: godot_binaries-${TAGNAME}.zip
+                asset_path: godot_binaries.zip
+                asset_name: godot_binaries.zip
                 asset_content_type: application/zip
           #wget https://github.com/AppImage/AppImageKit/releases/download/13/appimagetool-x86_64.AppImage
          # chmod +x appimagetool-x86_64.AppImage
